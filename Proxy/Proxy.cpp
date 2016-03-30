@@ -201,7 +201,10 @@ int main()
 		if (clientIP.compare(sNewProhibitedIP) == 0)	//if comparison is true (prohib is client)
 		{
 			getsockname(sockets.clientSocket, (struct sockaddr *)&clientAddr, &clientLength);
+<<<<<<< HEAD
 			printf("port is %d\n",((struct sockaddr_in*)&clientAddr)->sin_port);
+=======
+>>>>>>> refs/remotes/origin/Test403
 			_beginthread(service403, 0, (void *)sockets.clientSocket);
 			//Sleep(10);
 			printf("Created new thread to service 403 request \n");
