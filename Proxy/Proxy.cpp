@@ -142,7 +142,6 @@ int main()
 		system("pause"); // system call to wait for user input
 		return 1;
 	}
-
 	//set ip address
 	//Set values for serverAddr for the bind
 
@@ -201,6 +200,8 @@ int main()
 		string clientIP = inet_ntoa(clientAddr.sin_addr);	//get client ip which was assigned in the accept
 		if (clientIP.compare(sNewProhibitedIP) == 0)	//if comparison is true (prohib is client)
 		{
+			getsockname(sockets.clientSocket, (struct sockaddr *)&clientAddr, &clientLength);
+			printf("port is %d\n",((struct sockaddr_in*)&clientAddr)->sin_port);
 			_beginthread(service403, 0, (void *)sockets.clientSocket);
 			//Sleep(10);
 			printf("Created new thread to service 403 request \n");
