@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>13_FirstProc.mod</TITLE>
+</HEAD>
+
+<BODY><FONT FACE="Courier New" SIZE=4>
+<pre>
+MODULE FirstProc ;
+
+VAR k : INTEGER ;
+
+(********************************************************************)
+(****  L I T T L E ** L I T T L E **  L I T T L E ** L I T T L E ****)
+(********************************************************************)
+PROCEDURE little ( i : INTEGER ) ;
+
+VAR j : INTEGER ;
+
+BEGIN
+    j := i * 4 ;
+    WRINT ( i ) ;
+    WRSTR ( " : " ) ;
+    WRINT ( j ) ;
+    WRLN ;	
+END little ;
+
+(********************************************************************)
+(****     M A I N ** M A I N ** M A I N ** M A I N ** M A I N    ****)
+(********************************************************************)
+BEGIN
+    WRSTR ( "We should write a 3 and a 12: ") ;
+    k := 3 ;
+    little ( k ) ;
+END FirstProc.
+</pre>
+</FONT></BODY>

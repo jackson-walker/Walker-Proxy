@@ -1,0 +1,72 @@
+﻿A
+{
+    COLOR: #027326
+}
+A:hover
+{
+    COLOR: #003300
+}
+A:visited
+{
+    COLOR: #027326
+}
+
+.body
+{
+    FONT-SIZE: 16px;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+
+.smallprint
+{
+    FONT-SIZE: 12px;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+
+.header
+{
+    FONT-SIZE: 28px;
+    FONT-WEIGHT: bolder;
+    color:#993300;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+
+.homework
+{
+	background-color: #FFFF00;
+}
+
+.subheader
+{
+    FONT-SIZE: 18px;
+    FONT-WEIGHT: bold;
+    color:blue;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+
+.inventory
+{
+    background-color: #FFCC99;
+}
+
+.highlight
+{
+    FONT-SIZE: 16px;
+	font-weight:bold;
+	color:#993300;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+
+.red
+{
+    FONT-SIZE: 16px;
+	color:#993300;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+
+.green
+{
+    FONT-SIZE: 16px;
+	color:green;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}

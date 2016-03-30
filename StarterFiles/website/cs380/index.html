@@ -1,0 +1,751 @@
+<html>
+
+<head>
+	<title>Compilers</title>
+    <link href='public.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body class=body bgcolor=#E0E0F8>
+
+<a name=top></a><font class=header><b>Compilers</b> - CSCI 380 - Fall 2015</font>
+
+<br>
+
+<script language="javascript"> 
+		months = ['January', 'Febraury', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']; 
+		weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+		var theDate = new Date(document.lastModified); 
+		theDate.setTime((theDate.getTime()+(60*60)) ) 
+		
+		var modifiedDate = "<i>Last updated: ";
+		modifiedDate += weekday[theDate.getDay()];
+		modifiedDate += ", " + months[theDate.getMonth()];
+		modifiedDate += " " + theDate.getDate();
+		modifiedDate += ", " + theDate.getFullYear();
+		
+		document.write(modifiedDate)
+
+</script>
+
+<br><br>
+
+<p><a name=menu></a><font class=subheader>On this page</font></p>
+<ul>
+	<li><a href="#instructor">Instructor</a></li>
+	<li><a href="#textbooks">Textbooks</a></li>
+	<li><a href="#handouts">Course Handouts</a></li>
+	<li><a href="#weekly">Weekly Postings</a></li>
+	<li><a href="#scr">Single Character Reader</a></li>
+	<li><a href="#lexer">Lexer</a></li>
+	<li><a href="#sym">Symbol Table</a></li>
+</ul>
+
+<br><hr>
+
+<p><a name=instructor></a><font class=header>Instructor</font></p>
+
+<table class=body border=0 width="100%">
+	<tr>
+		<td class=red>Instructor:</td>
+		<td>John W. Broere</td>
+		<td class=red>Email:</td>
+		<td><a href="mailto:john.broere@principia.edu?Subject=CSCI%20171%20Homepage%20Question">john.broere@principia.edu</a></td>
+	</tr>
+	<tr>
+		<td class=red>Phone:</td>
+		<td>618-374-5088</td>
+		<td class=red>Office Hours:</td>
+		<td>drop by / by appointment</td>
+	</tr>
+	<tr>
+		<td class=red>Cell:</td>
+		<td>618-610-3500</td>
+		<td class=red>Office:</td>
+		<td>SC 139</td>
+	</tr>
+</table>
+
+<p><a href="#top">back to top</a></p>
+
+<br><hr>
+
+<p><a name="textbooks"></a><font class=header>Textbooks</font></p>
+<p class=subheader>Required</p>
+<table border=0>
+	<tr>
+		<td><img src="images/cs380_textbook_a.jpg" height="150"></td>
+		<td valign=top><b>Title:</b> Introduction to Compiler Construction<br>
+			<b>Author:</b> Thomas W. Parsons<br>
+			<b>ISBN-13:</b> <a href="http://www.amazon.com/Introduction-Compiler-Construction-Thomas-Parsons/dp/0716782618" target=_blank>978-0716782612</a><br></td>
+	</tr>
+</table>
+
+<p class=subheader>Optional</p>
+<table border=0>
+	<tr>
+		<td><img src="images/cs380_textbook_b.jpg" height="150"></td>
+		<td valign=top><b>Title:</b> Computing with C# and the .NET Framework<br>
+			<b>Edition:</b> Second<br>
+			<b>Author:</b> Art Gittleman<br>
+			<b>ISBN-13:</b> <a href="http://www.amazon.com/Computing-With-And-NET-Framework/dp/1449615503" target=_blank>978-1449615505</a><br></td>
+	</tr>
+</table>
+
+<p><a href="#top">back to top</a></p>
+
+<br><hr>
+
+<p><a name=handouts></a><font class=header>Course Handouts</font></p>
+	<ul>
+		<li>Compiler EBNF <a href="files/Compiler_EBNF.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+	</ul>
+
+<p><a href="#top">back to top</a></p>
+
+<br><hr>
+
+<p><a name="weekly"></a><font class=header>Weekly Postings</font></p>
+
+<a name="week01"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader>Week 1</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Tuesday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li></li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Start <a href="#scr">Single Character Reader</a></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Thursday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Q on <a href="#scr">Single Character Reader</a></li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Continue working on <a href="#scr">Single Character Reader</a></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week02"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader>Week 2</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Tuesday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li class=homework>Tag Week02 - <a href="#scr">Single Character Reader</a></li>
+				<li>Introduce <a href="#lexer">Lexer</a></li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Start <a href="#lexer">Lexer</a></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Thursday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Q on <a href="#lexer">Lexer</a></li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Continue working on <a href="#lexer">Lexer</a></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week03"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader>Week 3</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Tuesday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li class=homework>Tag Week03 - <a href="#lexer">Lexer</a></li>
+				<li>Introduce <a href="#sym">Symbol Table</a></li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Start <a href="#sym">Symbol Table</a></li>
+				<li>Read pages 65-71, and 281-286 symbol table, look up symbol table in the index</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Thursday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Q on <a href="#sym">Symbol Table</a></li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Continue working on <a href="#sym">Symbol Table</a></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week04"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader>Week 4</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Tuesday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li class=homework>Tag Week04 - <a href="#sym">Symbol Table</a></li>
+				<li>Introduction to Parsing & Emitting</li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Start <a href="files/MODS/01_Test.html" target=_blank>01_Test</a></li>
+				<li>Start <a href="files/MODS/02_HelloWorld.html" target=_blank>02_HelloWorld</a></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Thursday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Q on <a href="files/MODS/01_Test.html" target=_blank>01_Test</a></li>
+				<li>Q on <a href="files/MODS/02_HelloWorld.html" target=_blank>02_HelloWorld</a></li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Continue working on <a href="files/MODS/01_Test.html" target=_blank>01_Test</a></li>
+				<li>Continue working on <a href="files/MODS/02_HelloWorld.html" target=_blank>02_HelloWorld</a></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week05"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader>Week 5</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Tuesday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li class=homework>Tag Week05 - <a href="files/MODS/01_Test.html" target=_blank>01_Test</a> &
+				<a href="files/MODS/02_HelloWorld.html" target=_blank>02_HelloWorld</a></li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Start <a href="files/MODS/03_WriteInt.html" target=_blank>03_WriteInt</a></li>
+				<li>Start <a href="files/MODS/04_WriteVar.html" target=_blank>04_WriteVar</a></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Thursday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Q on <a href="files/MODS/03_WriteInt.html" target=_blank>03_WriteInt</a></li>
+				<li>Q on <a href="files/MODS/04_WriteVar.html" target=_blank>04_WriteVar</a></li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Continue working on <a href="files/MODS/03_WriteInt.html" target=_blank>03_WriteInt</a></li>
+				<li>Continue working on <a href="files/MODS/04_WriteVar.html" target=_blank>04_WriteVar</a></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week06"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader>Week 6</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Tuesday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li class=highlight>Fall Break - No Class</li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li class=highlight>Fall Break - No Class</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Thursday</b></td>
+		<td valign=top>
+			<ul>
+				<li class=homework>Tag Week06 <a href="files/MODS/03_WriteInt.html" target=_blank>03_WriteInt</a></li>
+				<li>Q on <a href="files/MODS/04_WriteVar.html" target=_blank>04_WriteVar</a></li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Continue working on <a href="files/MODS/04_WriteVar.html" target=_blank>04_WriteVar</a></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week07"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader>Week 7</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Tuesday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li class=homework>Tag Week07 - <a href="files/MODS/04_WriteVar.html" target=_blank>04_WriteVar</a></li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Start <a href="files/MODS/05_TestExpr.html" target=_blank>05_TestExpr</a></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Thursday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Q on <a href="files/MODS/05_TestExpr.html" target=_blank>05_TestExpr</a></li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Continue working on <a href="files/MODS/05_TestExpr.html" target=_blank>05_TestExpr</a></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week08"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader>Week 8</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Tuesday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Spring Break</li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Thursday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Spring Break</li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week09"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader>Week 9</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Tuesday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li class=homework>Tag Week09 - <a href="files/MODS/05_TestExpr.html" target=_blank>05_TestExpr</a></li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Start <a href="files/MODS/06_IfTest.html" target=_blank>06_IfTest</a></li>
+				<li>Start <a href="files/MODS/07_LoopTest.html" target=_blank>07_LoopTest</a></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Thursday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Q on <a href="files/MODS/06_IfTest.html" target=_blank>06_IfTest</a></li>
+				<li>Q on <a href="files/MODS/07_LoopTest.html" target=_blank>07_LoopTest</a></li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Continue working on <a href="files/MODS/06_IfTest.html" target=_blank>06_IfTest</a></li>
+				<li>Continue working on <a href="files/MODS/07_LoopTest.html" target=_blank>07_LoopTest</a></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week10"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader>Week 10</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Tuesday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li class=homework>Tag Week10 - <a href="files/MODS/06_IfTest.html" target=_blank>06_IfTest</a> &
+				<a href="files/MODS/07_LoopTest.html" target=_blank>07_LoopTest</a></li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Start <a href="files/MODS/08_ReadTest.html" target=_blank>08_ReadTest</a></li>
+				<li>Start <a href="files/MODS/09_LoopIf.html" target=_blank>09_LoopIf</a></li>
+				<li>Start <a href="files/MODS/10_FullExpr.html" target=_blank>10_FullExpr</a></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Thursday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Q on <a href="files/MODS/08_ReadTest.html" target=_blank>08_ReadTest</a></li>
+				<li>Q on <a href="files/MODS/09_LoopIf.html" target=_blank>09_LoopIf</a></li>
+				<li>Q on <a href="files/MODS/10_FullExpr.html" target=_blank>10_FullExpr</a></li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Continue working on <a href="files/MODS/08_ReadTest.html" target=_blank>08_ReadTest</a></li>
+				<li>Continue working on <a href="files/MODS/09_LoopIf.html" target=_blank>09_LoopIf</a></li>
+				<li>Continue working on <a href="files/MODS/10_FullExpr.html" target=_blank>10_FullExpr</a></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week11"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader>Week 11</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Tuesday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li class=homework>Tag Week11 - <a href="files/MODS/08_ReadTest.html" target=_blank>08_ReadTest</a> &
+				<a href="files/MODS/09_LoopIf.html" target=_blank>09_LoopIf</a> &
+				<a href="files/MODS/10_FullExpr.html" target=_blank>10_FullExpr</a></li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Start <a href="files/MODS/11_Square.html" target=_blank>11_Square</a></li>
+				<li>Start <a href="files/MODS/12_Primes.html" target=_blank>12_Primes</a></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Thursday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Q on <a href="files/MODS/11_Square.html" target=_blank>11_Square</a></li>
+				<li>Q on <a href="files/MODS/12_Primes.html" target=_blank>12_Primes</a></li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Continue working on <a href="files/MODS/11_Square.html" target=_blank>11_Square</a></li>
+				<li>Continue working on <a href="files/MODS/12_Primes.html" target=_blank>12_Primes</a></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week12"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader>Week 12</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Tuesday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li class=homework>Tag Week12 - <a href="files/MODS/11_Square.html" target=_blank>11_Square</a> &
+				<a href="files/MODS/12_Primes.html" target=_blank>12_Primes</a></li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Start <a href="files/MODS/13_FirstProc.html" target=_blank>13_FirstProc</a></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Thursday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Q on <a href="files/MODS/13_FirstProc.html" target=_blank>13_FirstProc</a></li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Continue working on <a href="files/MODS/13_FirstProc.html" target=_blank>13_FirstProc</a></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week13"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader>Week 13</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Tuesday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li class=homework>Tag Week13 - <a href="files/MODS/13_FirstProc.html" target=_blank>13_FirstProc</a></li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Start <a href="files/MODS/14_Towers_Part1.html" target=_blank>14_Towers_Part1</a></li>
+				<li>Start <a href="files/MODS/15_Towers_Part2.html" target=_blank>15_Towers_Part2</a></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Thursday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Q on <a href="files/MODS/14_Towers_Part1.html" target=_blank>14_Towers_Part1</a></li>
+				<li>Q on <a href="files/MODS/15_Towers_Part2.html" target=_blank>15_Towers_Part2</a></li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Continue working on <a href="files/MODS/14_Towers_Part1.html" target=_blank>14_Towers_Part1</a></li>
+				<li>Continue working on <a href="files/MODS/15_Towers_Part2.html" target=_blank>15_Towers_Part2</a></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week14"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader>Week 14</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Tuesday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li class=homework>Tag Week14 - <a href="files/MODS/14_Towers_Part1.html" target=_blank>14_Towers_Part1</a> &
+				<a href="files/MODS/15_Towers_Part2.html" target=_blank>15_Towers_Part2</a></li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Start <a href="files/MODS/16_Towers_Final.html" target=_blank>16_Towers_Final</a></li>
+				<li>Start <a href="files/MODS/17_RefPass.html" target=_blank>17_RefPass</a></li>
+				<li>Start <a href="files/MODS/18_BubbleSort.html" target=_blank>18_BubbleSort</a></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Thursday</b></td>
+		<td valign=top>
+			<ul>
+				<li class=highlight>Thanksgiving Break</a></li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li class=highlight>Thanksgiving Break</a></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week15"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader>Week 15</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Tuesday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Q on <a href="files/MODS/16_Towers_Final.html" target=_blank>16_Towers_Final</a></li>
+				<li>Q on <a href="files/MODS/17_RefPass.html" target=_blank>17_RefPass</a></li>
+				<li>Q on <a href="files/MODS/18_BubbleSort.html" target=_blank>18_BubbleSort</a></li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Continue working on <a href="files/MODS/16_Towers_Final.html" target=_blank>16_Towers_Final</a></li>
+				<li>Continue working on <a href="files/MODS/17_RefPass.html" target=_blank>17_RefPass</a></li>
+				<li>Continue working on <a href="files/MODS/18_BubbleSort.html" target=_blank>18_BubbleSort</a></li>
+				<li>Start <a href="files/MODS/19_Float.html" target=_blank>19_Float</a> (optional)</li>
+				<li>Start <a href="files/MODS/20_All.html" target=_blank>20_All</a> (optional float parts)</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Thursday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Q on <a href="files/MODS/16_Towers_Final.html" target=_blank>16_Towers_Final</a></li>
+				<li>Q on <a href="files/MODS/17_RefPass.html" target=_blank>17_RefPass</a></li>
+				<li>Q on <a href="files/MODS/18_BubbleSort.html" target=_blank>18_BubbleSort</a></li>
+				<li>Q on <a href="files/MODS/19_Float.html" target=_blank>19_Float</a> (optional)</li>
+				<li>Q on <a href="files/MODS/20_All.html" target=_blank>20_All</a> (optional float parts)</li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Continue working on <a href="files/MODS/16_Towers_Final.html" target=_blank>16_Towers_Final</a></li>
+				<li>Continue working on <a href="files/MODS/17_RefPass.html" target=_blank>17_RefPass</a></li>
+				<li>Continue working on <a href="files/MODS/18_BubbleSort.html" target=_blank>18_BubbleSort</a></li>
+				<li>Continue working on <a href="files/MODS/19_Float.html" target=_blank>19_Float</a> (optional)</li>
+				<li>Continue working on <a href="files/MODS/20_All.html" target=_blank>20_All</a> (optional float parts)</li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week16"></a>
+<table width="100%" border="1" name="week16">
+	<tr>
+		<td colspan="3" class=subheader >Week 16 - Finals Week</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Monday</b></td>
+		<td colspan="2"valign=top>
+			<ul>
+				<li class=homework>Tag Week16 - <a href="files/MODS/16_Towers_Final.html" target=_blank>16_Towers_Final</a> &
+				<a href="files/MODS/17_RefPass.html" target=_blank>17_RefPass</a> &
+				<a href="files/MODS/18_BubbleSort.html" target=_blank>18_BubbleSort</a> &
+				<a href="files/MODS/19_Float.html" target=_blank>19_Float</a> (optional) &
+				<a href="files/MODS/20_All.html" target=_blank>20_All</a> (optional float parts)</li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<p><a href="#top">back to top</a></p>
+
+<br><hr>
+
+<p><a name="scr"></a><font class=header>Single Character Reader</font></p>
+
+<p>You are to create a method of getting and displaying a single character at a time from any .MOD file. Base your design for this on our class discussion about the SCR assignment.  It is helpful to replace the char ' ' with the word SPACE.  You should also replace the end of line char with SPACE.  When you read the end of file char you should display EOF.</p>
+
+<p>Below are examples of a SCR layout.</p>
+
+<p><a href="images/SCR_1.gif" target=_blank><img src="images/SCR_1.gif" width="200"></a>
+<a href="images/SCR_2.gif" target=_blank><img src="images/SCR_2.gif" width="200"></a>
+<a href="images/SCR_3.gif" target=_blank><img src="images/SCR_3.gif" width="200"></a>
+<a href="images/SCR_4.gif" target=_blank><img src="images/SCR_4.gif" width="200"></a></p>
+
+<p><a href="#top">back to top</a></p>
+
+<br><hr>
+
+<p><a name="Lexer"></a><font class=header>Lexer</font></p>
+
+<p>Lexically analyze Modula-2 source code to produce a token list. See the samples below.  The following 
+tokens should be recognized and listed in accordance with the description of Modula-2 given in the TopSpeed Modual-2 User's Manual:</p>
+
+<pre>
+public enum TOKENTYPE
+{
+	/* 0*/ ERROR = 0,   AND,            ARRAY,          BEGIN,
+	/* 4*/ CARDINAL,    CONST,          DIV,            DO,
+	/* 8*/ ELSE,        END,            EXIT,           FOR,            IF,
+	/*13*/ INTEGER,     LOOP,           MOD,            MODULE,
+	/*17*/ NOT,         OF,             OR,             PROCEDURE,
+	/*21*/ REAL,        THEN,           TYPE,           VAR,
+	/*25*/ WHILE,       WRCARD,         WRINT,          WRLN,           CLS,
+	/*30*/ WRREAL,      RDCARD,         RDINT,          RDREAL,         WRSTR,
+	
+	/*35*/ ID,          CARD_NUM,       REAL_NUM,       INT_NUM,
+	
+	/*39*/ STRING,
+	
+	/*40*/ ASSIGN,      COLON,          COMMA,          DOT,
+	/*44*/ DOT_DOT,     EQUAL,          LEFT_BRACK,     LEFT_PAREN,
+	/*48*/ MINUS,       MULT,           NOT_EQ,         PLUS,
+	/*52*/ RIGHT_BRACK, RIGHT_PAREN,    SEMI_COLON,     SLASH,
+	/*56*/ GRTR_THAN,   GRTR_THAN_EQ,   LESS_THAN,      LESS_THAN_EQ,
+	
+	/* The two comment tokens are not presently used */
+	/*60*/ COMMENT_BEG,                 COMMENT_END,
+	
+	/*62*/ EOF
+};
+</pre>
+
+<p><a href="#top">back to top</a></p>
+
+<br><hr>
+
+<p><a name="sym"></a><font class=header>Symbol Table</font></p>
+
+<p>Create a symbol table class (symtable.cs) using HashTable, Stack and related data structures to retain information about the constants, types, variables, and procedures encountered while parsing the token list. The symbol table must include attention to values, lexical scope (current scope stack, and the scope of previously-declared variables), procedure parameters (reference and value), local variables, and arrays. It must be able to dump its contents to a text file. Some needed member functions might be: add a symbol, retrieve a symbol and its attributes, modify the attributes for a symbol, enter a new scope, leave a scope, get the total memory needed for a particular scope, find the innermost variable with a particular name in the current scope stack, and dump the table info to a file</p>
+
+<p>Although you don't really need to do much about procedure calls for awhile, it's helpful to at least think about what you will need. The symbol table will be consulted as you are parsing both the procedure call (to load the parameters and local variables onto the run-time stack), and while you are parsing statements within the procedure (to retrieve variables and constants from the run-time stack). Remember the run-time stack built within Medusa. What information is needed in the symbol table to support such a stack?</p>
+
+<p>You might ask about the "right" way to use a HashTable to build the symbol table. There isn't one! I've seen some students store the identifier in the HashTable with a pointer to a linked list. Each element of the linked list was a struct (or class) with all needed attributes including scope. Thus a search within a particular scope would find the linked list and then traverse it looking for the current scope. Others have decided to combine the scope number with the identifier -- thus creating a unique name to store in the HashTable for each. Either will work.</p>
+
+<p>Similarly, you can use one class to store every possible type of attribute (which means much of it will go unused for most identifiers) or have different classes derived from a common parent class for each kind of identifier (one for CONST, one for PROCEDURE, etc.) I do the former mostly but have a special class to deal with PROCEDUREs.</p>
+
+<p>There is an odd little class (or struct) to deal with a declaration like:</p>
+
+<p>PROCEDURE doStuff (x, y, z : INTEGER);</p>
+
+<p>While parsing the x, the y, and the z, I don't know what their type is, so I save them all in an ArrayList until I find the INTEGER. Then I add all three to the symbol table (now that I know their type).</p>
+
+<p>To test your symbol table, you will need to "hard code" several invented identifiers into the table (some INTEGERs, CONSTs, etc.) and then call the DumpSymTable() function to prove that it remembered what you put into it.</p>
+
+<p><a href="#top">back to top</a></p>
+
+</body>
+
+</html>
