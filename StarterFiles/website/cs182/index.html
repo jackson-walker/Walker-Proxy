@@ -1,0 +1,413 @@
+<html>
+
+<head>
+	<title>Intro. to Data Structures</title>
+    <link href='public.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body bgcolor=#C5F7BC class=body>
+
+<a name=top></a>
+<font class=header><b>Introduction to Data Structures</b> - CSCI 182 - Spring 2016</font>
+
+<br>
+
+<script language="javascript"> 
+		months = ['January', 'Febraury', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']; 
+		weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+		var theDate = new Date(document.lastModified); 
+		theDate.setTime((theDate.getTime()+(60*60)) ) 
+		
+		var modifiedDate = "<i>Last updated: ";
+		modifiedDate += weekday[theDate.getDay()];
+		modifiedDate += ", " + months[theDate.getMonth()];
+		modifiedDate += " " + theDate.getDate();
+		modifiedDate += ", " + theDate.getFullYear();
+		
+		document.write(modifiedDate)
+
+</script>
+
+<br><br>
+
+<p><a name=menu></a><font class=subheader>On this page</font></p>
+<ul>
+	<li><a href="#instructor">Instructor</a></li>
+	<li><a href="#textbooks">Textbooks</a></li>
+	<li><a href="#handouts">Course Handouts</a></li>
+	<li><a href="#weekly">Weekly Postings</a></li>
+</ul>
+
+<br><hr>
+
+<p><a name=instructor></a><font class=header>Instructor</font></p>
+
+<table class=body border=0 width="100%">
+	<tr>
+		<td class=red>Instructor:</td>
+		<td>John W. Broere</td>
+		<td class=red>Email:</td>
+		<td><a href="mailto:john.broere@principia.edu?Subject=CSCI%20171%20Homepage%20Question">john.broere@principia.edu</a></td>
+	</tr>
+	<tr>
+		<td class=red>Phone:</td>
+		<td>618-374-5088</td>
+		<td class=red>Office Hours:</td>
+		<td>drop by / by appointment</td>
+	</tr>
+	<tr>
+		<td class=red>Cell:</td>
+		<td>618-610-3500</td>
+		<td class=red>Office:</td>
+		<td>SC 139</td>
+	</tr>
+</table>
+
+<p><a href="#top">back to top</a></p>
+
+<br><hr>
+
+<p><a name="textbooks"></a><font class=header>Textbooks</font></p>
+<p class=subheader>Required</p>
+<table border=0>
+	<tr>
+		<td><img src="images/textbook.jpg" height="150"></td>
+		<td valign=top><b>Title:</b> Programming and Problem Solving with C++: Comprehensive, Sixth Edition<br>
+			<b>Author:</b> Nell Dale & Chip Weems<br>
+			<b>ISBN-13:</b> <a href="http://www.amazon.com/Programming-Problem-Solving-With-Comprehensive/dp/1284028763/ref=pd_rhf_gw_p_img_1" target=_blank>978-1284028768</a><br></td>
+	</tr>
+</table>
+
+<p><a href="#top">back to top</a></p>
+
+<br><hr>
+
+<p><a name=handouts></a><font class=header>Course Handouts</font></p>
+<ul>
+	<li><b>General:</b></li>
+	<ul>
+		<li>Basic HelloWorld Cpp - <a href="files/HelloWorld_Cpp.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+	</ul>
+	<li><b>Chapter Slides:</b></li>
+	<ul>
+		<li>Chapter 01 Slides <a href="files/Ch01_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 02 Slides <a href="files/Ch02_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 03 Slides <a href="files/Ch03_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 04 Slides <a href="files/Ch04_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 05 Slides <a href="files/Ch05_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 06 Slides <a href="files/Ch06_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 07 Slides <a href="files/Ch07_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 08 Slides <a href="files/Ch08_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 09 Slides <a href="files/Ch09_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 10 Slides <a href="files/Ch10_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 11 Slides <a href="files/Ch11_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 12 Slides <a href="files/Ch12_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 13 Slides <a href="files/Ch13_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 14 Slides <a href="files/Ch14_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 15 Slides <a href="files/Ch15_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 16 Slides <a href="files/Ch16_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 17 Slides <a href="files/Ch17_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+		<li>Chapter 18 Slides <a href="files/Ch18_Slides.pdf" target="blank">View</a> <img src="images/pdf.png" width=20></li>
+	</ul>
+</ul>
+
+<p><a href="#top">back to top</a></p>
+
+<br><hr>
+
+<p><a name="weekly"></a><font class=header>Weekly Postings</font></p>
+
+<a name="week01"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader>Week 1 - C++ Intro, Program Conversion, and Chapter 10</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Monday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li></li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Start converting <a href="files/HelloWorldLoop.pdf" target="blank">HelloWorldLoop</a> <img src="images/pdf.png" width=20></li>
+				<li>Start converting NamesAndCourses</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Wednesday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Q on HelloWorldLoop</li>
+				<li>Start Chapter 10</li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li><a href="#handouts">Chapter 10 Slides</a></li>
+				<li>Finish HelloWorldLoop</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Friday</b></td>
+		<td valign=top>
+			<ul>
+				<li class=homework>Collect HelloWorldLoop</li>
+				<li>Q on NamesAndCourses</li>
+				<li>Q on Chapter 10 through enums</li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Continue studying Chapter 10</li>
+				<li>Finish NamesAndCourses</li>
+			</ul>
+		</td>
+	</tr>
+</table>
+</p>
+
+<a name="week02"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader >Week 2 - Chapter 10: user-defined types (typedef, enums, structs) and pointers</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Monday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li class=homework>Collect NamesAndCourses</li>
+				<li>Q on Chapter 10 through structs</li>
+				<li>Introduce DiskMaker</li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Continue studying Chapter 10</li>
+				<li>Start DiskMaker <img src="images/zip.png" width=20></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Wednesday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Q on Chapter 10</li>
+				<li>Q on DiskMaker</li>
+				<li>Introduce ArtCollection</li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Start ArtCollection</li>
+				<li>Finish DiskMaker</li>
+				<li>Finish studying Chapter 10</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Friday</b></td>
+		<td valign=top>
+			<ul>
+				<li class=homework>Collect DiskMaker</li>
+				<li>Final Q on Chapter 10</li>
+				<li>Q on ArtCollection</li>
+				<li>Chapter 10 TEST</li>
+				<li>Start Chapter 11</li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li><a href="#handouts">Chapter 11 Slides</a></li>
+				<li>Finish DiskMaker</li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week03"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader >Week 3 - Chapter 11: one and two-dimensional arrays</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Monday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li class=homework>Collect DiskMaker</li>
+				<li>Q on Chapter 11</li>
+				<li>In class DynamicArray</li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Continue studying Chapter 11</li>
+				<li>Start Baseball <img src="images/zip.png" width=20></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Wednesday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Q on Chapter 11</li>
+				<li>Q on Baseball</li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Finish studying Chapter 11</li>
+				<li>Finish Baseball</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Friday</b></td>
+		<td valign=top>
+			<ul>
+				<li class=homework>Collect Baseball</li>
+				<li>Final Q on Chapter 11</li>
+				<li>Chapter 11 TEST</li>
+				<li>Start Chapter 12</li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li><a href="#handouts">Chapter 12 Slides</a></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week04"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader >Week 4 - Chapter 12: classes</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Monday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Q on Chapter 12</li>
+				<li>In class Periods <img src="images/zip.png" width=20></li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Continue studying Chapter 12</li>
+				<li>Finish Periods</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Wednesday</b></td>
+		<td valign=top>
+			<ul>
+				<li class=homework>Collect Periods</li>
+				<li>Q on Chapter 12</li>
+				<li>Introduce NetworkAP</li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Finish studying Chapter 12</li>
+				<li>Start NetworkAP</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Friday</b></td>
+		<td valign=top>
+			<ul>
+				<li>Q on Chapter 12</li>
+				<li>Q on NetworkAP</li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li><a href="#handouts">Chapter 12 Slides</a></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week05"></a>
+<table width="100%" border="1">
+	<tr>
+		<td colspan="3" class=subheader >Week 5</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Monday</b></td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Q on Chapter 12</li>
+				<li>Q on NetworkAP</li>
+				<li class=inventory>Introduction CPart - Part.h</li>
+			</ul>
+		</td>
+		<td width="44%" valign=top>
+			<ul>
+				<li>Continue studying Chapter 12</li>
+				<li>Finish NetworkAP</li>
+				<li class=inventory>Start Part.h <img src="images/pdf.png" width=20></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Wednesday</b></td>
+		<td valign=top>
+			<ul>
+				<li class=homework>Collect NetworkAP</li>
+				<li>Q on Chapter 12</li>
+				<li class=inventory>Q on Part.h</li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li>Finish studying Chapter 12</li>
+				<li class=inventory>Finish Part.h</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><b>Friday</b></td>
+		<td valign=top>
+			<ul>
+				<li class=homework>Collect Part.h</li>
+				<li>Q on Chapter 12</li>
+				<li>Chapter 12 TEST</li>
+				<li>Start Chapter 13</li>
+				<li class=inventory>Introduce CPart - Part.cpp</li>
+			</ul>
+		</td>
+		<td valign=top>
+			<ul>
+				<li></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<a name="week16"></a>
+<table width="100%" border="1" name="week16">
+	<tr>
+		<td colspan="3" class=subheader >Week 16 - Finals Week</td>
+	</tr>
+	<tr>
+		<td width="12%" valign=top><b>Monday</b></td>
+		<td colspan="2"valign=top>
+			<ul>
+				<li>Final Inventory peer review</li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+<p><a href="#top">back to top</a></p>
+
+</body>
+</html>
