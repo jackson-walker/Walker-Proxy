@@ -29,10 +29,10 @@ using namespace std;
 /*~~~~~ DEFINES ~~~~~~~~~ DEFINES ~~~~~~~~~ DEFINES ~~~~~~~~~ DEFINES ~~~~~~~~~ DEFINES ~~~~*/
 #define DEFAULT_PORT		9050				// Default Server Port Number
 #define SERVER_PORT			1080				// Default for the actual server
-#define MAX_BUFFER			100					// Maximum Buffer Size
+#define MAX_BUFFER			4096					// Maximum Buffer Size
 #define MAX_CONNECTIONS		3					// Mazimum # of client connections
-#define PROHIBITED_CLIENT	"10.130.35.174"		// used for testing on my own computer
-#define DEFAULT_SERVER		"10.130.35.173"		// used for testing on own computer
+#define PROHIBITED_CLIENT	"10.135.51.157"		// used for testing on my own computer
+#define DEFAULT_SERVER		"10.135.51.157"		// used for testing on own computer
 #define _CRT_SECURE_NO_WARNINGS					// disable warning for time functions lol
 #define FAV_ICON			"HTTP/1.0 favicon\nContent-Type:image/x-icon\n\n"
 #define FAIL_IMAGE			"HTTP/1.0 200 OK\nContent-Type:image/jpg\n\n"
@@ -55,7 +55,11 @@ void serviceFromServer(void *);
 
 /*################################# GLOBAL SOCKETS BECAUSE FUCK MULTIPLE PARAMETERS IN BEGIN THREAD ###############################################*/
 
-
+struct Sockets {
+	SOCKET serverSocket = INVALID_SOCKET;	//create connection socket for server
+	SOCKET proxySocket = INVALID_SOCKET;
+	SOCKET clientSocket = INVALID_SOCKET;
+};
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 M A I N  **  M A I N  **  M A I N  **  M A I N  **  M A I N  **  M A I N  **  M A I N
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -71,12 +75,7 @@ int main()
 	struct  sockaddr_in		serverAddr;		// server IP info declared globally
 
 
-	struct Sockets
-	{
-		SOCKET serverSocket = INVALID_SOCKET;	//create connection socket for server
-		SOCKET proxySocket = INVALID_SOCKET;
-		SOCKET clientSocket = INVALID_SOCKET;
-	} sockets;
+	Sockets sockets;
 
 	char	sendBuf[MAX_BUFFER] = "";			// output buffer
 	char	recvBuf[MAX_BUFFER] = "";			// input buffer
@@ -108,7 +107,11 @@ int main()
 	string sNewServerIP;
 	cin >> sNewServerIP;
 	if (sNewServerIP == to_string(1))
+	{
 		sNewServerIP = DEFAULT_SERVER;
+		printf("pooploop");
+	}
+		
 	printf("Server IP address is: %s\n", sNewServerIP.c_str());	//output new server IP
 
 	//startup winsock
@@ -181,11 +184,11 @@ int main()
 	while (true)	//loop until temporary socket is connected
 	{
 		int clientLength = sizeof(clientAddr);	//get client length
-		sockets.clientSocket = INVALID_SOCKET;	//create temporary return socket
-		sockets.clientSocket = accept(mySocket, (struct sockaddr *)&clientAddr, &clientLength);	//set the temporary port to accept incoming connection, I don't fully understand the middle parameter
+		//sockets.clientSocket = INVALID_SOCKET;	//create temporary return socket
+		SOCKET tempSock = accept(mySocket, (struct sockaddr *)&clientAddr, &clientLength);	//assign client socket
+		sockets.clientSocket = tempSock;
 		if (sockets.clientSocket == INVALID_SOCKET)	//if failure,
 		{
-
 			printf("Server: Connection Error: %ld \n", WSAGetLastError());
 			if (closesocket(sockets.clientSocket) < 0)	//if close fails
 			{
@@ -200,13 +203,9 @@ int main()
 		string clientIP = inet_ntoa(clientAddr.sin_addr);	//get client ip which was assigned in the accept
 		if (clientIP.compare(sNewProhibitedIP) == 0)	//if comparison is true (prohib is client)
 		{
-			getsockname(sockets.clientSocket, (struct sockaddr *)&clientAddr, &clientLength);
-<<<<<<< HEAD
-			printf("port is %d\n",((struct sockaddr_in*)&clientAddr)->sin_port);
-=======
->>>>>>> refs/remotes/origin/Test403
-			_beginthread(service403, 0, (void *)sockets.clientSocket);
-			//Sleep(10);
+			printf("port is %d\n",((struct sockaddr_in*)&clientAddr)->sin_port);	//port for client
+			printf("socket is %d\n", (getsockname(sockets.clientSocket, (struct sockaddr *)&clientAddr, &clientLength))); //socket for client
+			_beginthread(service403, 0, (void *)&sockets.clientSocket);
 			printf("Created new thread to service 403 request \n");
 		}//if
 		else
@@ -217,20 +216,31 @@ int main()
 			}
 			printf("Socket Created. \n");
 			serverAddr.sin_family = AF_INET;
-			serverAddr.sin_addr.s_addr = inet_addr(DEFAULT_SERVER);	//assign information to server Addr object
+			serverAddr.sin_addr.s_addr = inet_addr(sNewServerIP.c_str());	//assign information to server Addr object
 			serverAddr.sin_port = htons(SERVER_PORT);
 
-			if (connect(sockets.serverSocket, (SOCKADDR *)&serverAddr, sizeof(serverAddr)) < 0)		//connection instructions from binary tides
+			if (connect(sockets.serverSocket, (SOCKADDR *)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)		//connection instructions from binary tides
 			{
 				printf("connect error: %d \n", WSAGetLastError());	//failure
 				system("PAUSE");
 			}
-
-			printf("Connected \n");	//connected 
-			//_beginthread(serviceFromClient, 0, (void *)sockets.clientSocket);	//call service from client to pass messages from client to 
+			else
+				printf("Connected \n");	//connected 
+			//KENT HELPED HERE at 3 am on the due date
+			if (_beginthread(serviceFromClient, MAX_BUFFER, (void *)&sockets) > 0) //call service from client to pass messages from client to 
+			{
+				if (_beginthread(serviceFromServer, MAX_BUFFER, (void *)&sockets) < 0)
+				{
+					printf("thread broked");
+					closesocket(sockets.clientSocket);
+				}									
+			}
+			Sleep(100);
+			; //call service from server to pass messages
 			//rest of program here please
 
-		} Sleep(10);
+		}  //else loop
+		Sleep(10);
 	}//while
 }//main
 
@@ -266,22 +276,31 @@ void service403(void *param)
 
 		// figure out what type of file we are sending
 		if (strstr(fileName, "frown.jpg") != NULL)
-			strcpy_s(sendBuf, FAIL_IMAGE);
+		{
+			strcpy_s(sendBuf, OK_IMAGE);
+			printf("debugloop1");
+		}
+
 
 		else if (strstr(fileName, "favicon.ico") != NULL)
+		{
 			strcpy_s(sendBuf, FAV_ICON);
+			printf("fucking memes2");
+		}
+
 		else
 		{
 			strcpy_s(sendBuf, OK_TEXT);
 			fin.open("http_403.html", ios::in | ios::binary);	//open 403 if it's not a jpg or ico
 			fileName = "http_403.html";
 		}
-
+		//borked
 		if (!fin.is_open())
 		{
+			printf("pooploop1\n");
 			fin.open(&fileName[1], ios::in | ios::binary);
-			
 		}
+			
 
 		// Open the requested file
 		//  - Start at 2nd char to get rid of leading '\'
@@ -290,12 +309,13 @@ void service403(void *param)
 		if (fin)
 		{ // file was successfully opened						
 			// (< 0 if error)
-			if (send(clientSocket, sendBuf, strlen(sendBuf), 0) < 0)
+			if (send(clientSocket, sendBuf, MAX_BUFFER, 0) < 0)
 				printf("Send Failed: %d\n\n", WSAGetLastError());
 
 			// loop through and send the file in chunks up to MAX_BUFFER size
 			while (!fin.eof())
 			{
+				printf("finin");
 				// read in from the file up to MAX_BUFFER size
 				fin.read(sendBuf, MAX_BUFFER);
 
@@ -310,12 +330,12 @@ void service403(void *param)
 					fileSize += streamSize;
 					numChunks++;
 				}
-
+				printf("finout");
 			} // while !eof
 
 			// report on the file that has been sent: size and number of chunks
 			printf("\tSent: %s (%d chunk(s) - %d Bytes)\n",
-				fileName[1],
+				&fileName[1],
 				numChunks,
 				fileSize);
 
@@ -340,6 +360,11 @@ void service403(void *param)
 				printf("Send Failed: %d\n\n", WSAGetLastError());
 		}
 	}//endif
+	else //if somethinghappens to the recv buff and it is less than 0 (an error or something
+	{
+		printf("Closing thread ID: %i \n ############################################################################### \n", _getpid());
+		_endthread();
+	}
 
 	// Close the client socket and end the thread
 	printf("Closing thread ID: %i \n ############################################################################### \n", _getpid());
@@ -358,12 +383,12 @@ void Sleep(int msec)
 
 } // Sleep
 
-/*
+
 //Handles recv from client and forwards requests to server
 void serviceFromClient(void *param)
 {
-	Sockets sockets = *(Sockets*)param;			// client socket descriptor
-	char		sendBuf[MAX_BUFFER];			// output bufferi
+	Sockets sockets = *(Sockets *)param;		// client socket descriptor
+	char		sendBuf[MAX_BUFFER];			// output buffer
 	char		recvBuf[MAX_BUFFER];			// input buffer
 	char		*fileName = NULL;				// File name
 	char		*tokens = NULL;					// For holding token info
@@ -374,36 +399,68 @@ void serviceFromClient(void *param)
 	printf("serviceFromClient thread successfully initialized id: %i \n", _getpid());// debug for breaking
 	int loopInt = 0;
 	// Receive GET and transfer
-	while ((streamSize = recv(clientSocket, recvBuf, MAX_BUFFER, 0)) > 0)
+	if((streamSize = recv(sockets.clientSocket, recvBuf, MAX_BUFFER, 0)) > 0)
 	{
 		string saveBuf = recvBuf;
 		strtok_s(recvBuf, " ", &tokens);			// consume the GET
 		fileName = strtok_s(NULL, " ", &tokens);	// next tokebn is the file name
 		printf("\tRequested from server: %s\n", &fileName[1]);	//print request
 
-		if (send(serverSocket, saveBuf.c_str(), streamSize, 0) < 0)
+		int bytesSent = send(sockets.serverSocket, saveBuf.c_str(), streamSize, 0);
+		if (bytesSent == SOCKET_ERROR)
+		{
 			printf("Send Failed: %d\n\n", WSAGetLastError());
-		else
-		{ // successful send 
+		}
+
+		/*else
+		{ // successful send 4444444444444
 			loopInt++;
 			printf("%d send \n", loopInt);
 			fileSize += streamSize;
-			printf("filesize inc, filesize: %d \n", fileSize);
-			numChunks++;	
-			printf("numchunks inc numchunks = %d", numChunks);
+			numChunks++;
 		}// end ifelse
 							//DIES SOMEWHERE IN HERE
 		printf("\tSent: %s (%d chunk(s) - %d Bytes to server)\n",	//send math for sending to sever
 			fileName[1],
 			numChunks,
-			fileSize);
+			fileSize);*/
 	}//end while
-	closesocket(serverSocket);
+	//closesocket(sockets.serverSocket);
 	_endthread();
 }
-*/
+
 //Handles recv from server and forwards data to client
 void serviceFromServer(void *param)
 {
+	Sockets sockets = *(Sockets *)param;		// client socket descriptor
+	char		sendBuf[MAX_BUFFER];			// output buffer
+	char		recvBuf[MAX_BUFFER];			// input buffer
+	char		*fileName = NULL;				// File name
+	char		*tokens = NULL;					// For holding token info
+	int			streamSize;						// number of bytes actually transfered
+	int			fileSize = 0;					// we need to keep track of the file size
+	int			numChunks = 0;					// we want to display the # of chunks
 
+	printf("serviceFromServer thread successfully initialized id: %i \n", _getpid());// debug for breaking
+	//int loopInt = 0;
+	// Receive GET and transfer
+	while ((streamSize = recv(sockets.serverSocket, recvBuf, MAX_BUFFER, 0)) > 0)
+	{
+		/*
+		string saveBuf = recvBuf;
+		strtok_s(recvBuf, " ", &tokens);			// consume the GET
+		fileName = strtok_s(NULL, " ", &tokens);	// next tokebn is the file name
+		printf("\tRequested from server: %s\n", &fileName[1]);	//print request
+		*/
+		if (send(sockets.clientSocket, recvBuf, streamSize, 0) < 0)
+			printf("Send Failed: %d\n\n", WSAGetLastError());
+		fileSize += streamSize;
+		numChunks++;
+		printf("\tSent: (%d chunk(s) - %d Bytes to server)\n",	//send math for sending to sever
+			numChunks,
+			fileSize);
+	}//end while
+	closesocket(sockets.clientSocket);
+	closesocket(sockets.serverSocket);
+	_endthread();
 }
